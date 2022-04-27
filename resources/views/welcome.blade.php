@@ -95,7 +95,9 @@
                         {{$details->getRegion()}}
                         {{$details->getCountry()}}
                     </h1>
-                    <a href="/map">Go To Map</a>
+
+                    <h1 style="text-align:center">Tekan Register/Login untuk melihat map</h1>
+
                 </div>
 
                 <div class="links">

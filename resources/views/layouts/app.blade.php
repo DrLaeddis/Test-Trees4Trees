@@ -76,15 +76,79 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-            {{ isset($slot) ? $slot : null }}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        MapBox
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>    
+            <div id='map' style='width: 100%; height: 80vh; border:1px solid black;'></div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Form</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Longtitude</label>
+                                    <input wire:model="long" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Latitude</label>
+                                    <input wire:model="lat" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+
+    </div>
+
+    @push('scripts')
+
+    <script>
+        document.addEventListener('livewire:load', () =>{
+            const defaultLoaction = [110.43594477693868, -7.004960932435395];
+
+            mapboxgl.accessToken = '{{ env("MAPBOX_KEY") }}';
+            var map = new mapboxgl.Map({
+                center: defaultLoaction,
+                zoom: 11.15,
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11'
+            });
 
             
-        </main>
+
+            map.addControl(new mapboxgl.NavigationControl)
+
+            map.on('click', (e) => {
+                const longtitude = e.lngLat.lng;
+                const latitude   = e.lngLat.lat;
+
+                console.log({longtitude,latitude});
+
+            })
+        })
+    </script>
+
+    @endpush
     </div>
     <!-- mapbox -->
     @livewireScripts
+
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
     @stack('scripts')
 </body>

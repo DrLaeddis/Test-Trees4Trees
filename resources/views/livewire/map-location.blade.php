@@ -11,7 +11,9 @@
 
 <script>
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibGFlZGRpcyIsImEiOiJja2xraWFxbmgwNTBzMnBtd3B1bjluYW9xIn0.39A6eWtKxzvLiYv-L-mNCA';
+    console.log("Value dari", @this.test);
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibGFlZGRpcyIsImEiOiJja2xraTdndHUyczZsMndtbHB4NXloYzU1In0.I2q4T1TbUHd3iOVyXXXLjw';
 var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11'
